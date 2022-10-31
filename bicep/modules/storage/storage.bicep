@@ -20,7 +20,7 @@
 
 param location string
 param name string
-param description string
+param tags object
 
 resource storageAccountDocument 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   name: name
@@ -28,9 +28,7 @@ resource storageAccountDocument 'Microsoft.Storage/storageAccounts@2021-04-01' =
   sku: {
     name: 'Standard_LRS'    
   }
-  tags: {
-    'description': '${description}'
-  }
+  tags: tags
   kind: 'StorageV2'
   properties: {
     supportsHttpsTrafficOnly: true

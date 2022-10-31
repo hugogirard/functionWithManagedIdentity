@@ -34,7 +34,9 @@ module storageDocument 'modules/storage/storage.bicep' = {
   scope: resourceGroup(spokeStorageRg.name)
   name: 'storageDocument'
   params: {
-    description: 'Document storage'
+    tags: {
+      'description': 'Document storage'
+    }
     location: location
     name: strAccountNameDoc
   }
