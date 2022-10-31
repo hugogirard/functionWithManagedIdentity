@@ -5,11 +5,21 @@ param location string
 param vnetConfiguration object
 
 var spokeRgAseName = 'rg-spoke-ase-demo'
+var spokeRgStorageName = 'rg-spoke-storage-demo'
+
+var spokeAseSuffix = uniqueString(spokeAseRg.id)
+var strAccountNameDoc = 'strd${spokeAseSuffix}'
 
 resource spokeAseRg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: spokeRgAseName
   location: location
 }
+
+resource spokeStorageRg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+  name: spokeRgStorageName
+  location: location
+}
+
 
 module vnetSpokeAse './modules/networking/vnet.spoke.ase.bicep' = {
   scope: resourceGroup(spokeAseRg.name)
@@ -17,5 +27,15 @@ module vnetSpokeAse './modules/networking/vnet.spoke.ase.bicep' = {
   params: {
     location: location
     vnetConfiguration: vnetConfiguration.spokeAse
+  }
+}
+
+module storageDocument 'modules/storage/storage.bicep' = {
+  scope: resourceGroup(spokeStorageRg.name)
+  name: 'storageDocument'
+  params: {
+    description: 'Document storage'
+    location: location
+    name: strAccountNameDoc
   }
 }
