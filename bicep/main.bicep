@@ -38,3 +38,13 @@ module storageDocument 'modules/storage/storage.bicep' = {
     name: strAccountNameDoc
   }
 }
+
+module ase 'modules/ase/ase.bicep' = {
+  scope: resourceGroup(spokeAseRg.name)
+  name: 'ase'
+  params: {
+    location: location
+    subnetId: vnetSpokeAse.outputs.vnetId
+    suffix: spokeAseSuffix
+  }
+}
