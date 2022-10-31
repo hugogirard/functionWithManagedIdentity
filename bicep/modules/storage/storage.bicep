@@ -29,7 +29,7 @@ resource storageAccountDocument 'Microsoft.Storage/storageAccounts@2021-04-01' =
     name: 'Standard_LRS'    
   }
   tags: {
-    'description': description
+    'description': '${description}'
   }
   kind: 'StorageV2'
   properties: {
