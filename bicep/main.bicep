@@ -44,7 +44,7 @@ module ase 'modules/ase/ase.bicep' = {
   name: 'ase'
   params: {
     location: location
-    subnetId: vnetSpokeAse.outputs.vnetId
+    subnetId: vnetSpokeAse.outputs.subnets[0].id
     suffix: spokeAseSuffix
   }
 }
