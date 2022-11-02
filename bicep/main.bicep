@@ -73,5 +73,6 @@ module function 'modules/function/function.bicep' = {
     strDocumentName: storageDocument.outputs.storageName
     strFunctionName: storageFunction.outputs.storageName
     suffix: spokeFunctionSuffix
+    strDocumentRgName: spokeStorageRg.name
   }
 }

@@ -23,6 +23,7 @@ param suffix string
 param appInsightName string
 param strFunctionName string
 param strDocumentName string
+param strDocumentRgName string
 
 var appServiceName = 'plan-processor-${suffix}'
 
@@ -36,6 +37,7 @@ resource storageFunction 'Microsoft.Storage/storageAccounts@2021-04-01' existing
 
 resource storageDocument 'Microsoft.Storage/storageAccounts@2021-04-01' existing = {
   name: strDocumentName
+  scope: resourceGroup(strDocumentRgName)
 }
 
 
