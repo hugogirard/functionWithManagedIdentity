@@ -9,7 +9,7 @@ namespace Contoso
     public class ProcessFile
     {
         [FunctionName("ProcessFile")]
-        public void Run([BlobTrigger("documents/{name}", Connection = "StrDocument")]Stream myBlob, string name, ILogger log)
+        public void Run([BlobTrigger("documents/{name}", Connection = "AzureWebJobsStorage")]Stream myBlob, string name, ILogger log)
         {
             log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
         }

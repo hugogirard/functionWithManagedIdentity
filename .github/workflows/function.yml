@@ -5,7 +5,7 @@ on:
 
 env:
   DOTNET_VERSION: '3.1.x'
-  AZURE_FUNCTION_PACKAGE_PATH: 'src2'
+  AZURE_FUNCTION_PACKAGE_PATH: 'src'
   FUNCTION_NAME: func3hgtest
 
 jobs:
