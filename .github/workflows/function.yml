@@ -6,7 +6,7 @@ on:
 env:
   DOTNET_VERSION: '6.0.x'
   AZURE_FUNCTION_PACKAGE_PATH: 'src'
-  FUNCTION_NAME: storagefunction
+  FUNCTION_NAME: funcblobhg
 
 jobs:
   build-and-deploy:
