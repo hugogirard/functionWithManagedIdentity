@@ -54,3 +54,24 @@ module storageFunction 'modules/storage/storage.bicep' = {
     name: strFunctionName
   }
 }
+
+module monitoring 'modules/monitoring/monitoring.bicep' = {
+  scope: resourceGroup(spokeFunctionRg.name)
+  name: 'monitoring'
+  params: {
+    location: location
+    suffix: spokeFunctionSuffix
+  }
+}
+
+module function 'modules/function/function.bicep' = {
+  scope: resourceGroup(spokeFunctionRg.name)
+  name: 'function'
+  params: {
+    appInsightName: monitoring.outputs.appInsightName
+    location: location
+    strDocumentName: storageDocument.outputs.storageName
+    strFunctionName: storageFunction.outputs.storageName
+    suffix: spokeFunctionSuffix
+  }
+}

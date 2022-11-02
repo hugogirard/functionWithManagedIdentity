@@ -21,7 +21,7 @@
 param location string
 param name string
 
-resource storageAccountDocument 'Microsoft.Storage/storageAccounts@2021-04-01' = {
+resource storage 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   name: name
   location: location
   sku: {
@@ -33,3 +33,5 @@ resource storageAccountDocument 'Microsoft.Storage/storageAccounts@2021-04-01' =
     accessTier: 'Hot'
   }
 }
+
+output storageName string = storage.name
