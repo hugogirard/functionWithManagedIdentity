@@ -25,7 +25,7 @@ param strFunctionName string
 param strDocumentName string
 param strDocumentRgName string
 
-var appServiceName = 'plan-processor-${suffix}'
+var appServiceName = 'plan-function-${suffix}'
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' existing = {
   name: appInsightName
