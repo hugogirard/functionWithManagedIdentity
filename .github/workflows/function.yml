@@ -5,8 +5,8 @@ on:
 
 env:
   DOTNET_VERSION: '6.0.x'
-  AZURE_FUNCTION_PACKAGE_PATH: 'src'
-  FUNCTION_NAME: funchgtest
+  AZURE_FUNCTION_PACKAGE_PATH: 'src2'
+  FUNCTION_NAME: func3hgtest
 
 jobs:
   build-and-deploy:
