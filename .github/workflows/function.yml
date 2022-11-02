@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOTNET_VERSION: '3.1.x'
+  DOTNET_VERSION: '6.0.x'
   AZURE_FUNCTION_PACKAGE_PATH: 'src'
   FUNCTION_NAME: funchgtest
 
