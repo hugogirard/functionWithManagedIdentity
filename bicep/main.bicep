@@ -4,14 +4,16 @@ param location string
 
 param vnetConfiguration object
 
-var spokeRgAseName = 'rg-spoke-ase-demo'
+var spokeRgFunctionName = 'rg-spoke-func-demo'
 var spokeRgStorageName = 'rg-spoke-storage-demo'
+var hubRgName = 'rg-hub-demo'
 
-var spokeAseSuffix = uniqueString(spokeAseRg.id)
-var strAccountNameDoc = 'strd${spokeAseSuffix}'
+var spokeFunctionSuffix = uniqueString(spokeFunctionRg.id)
+var strAccountNameDoc = 'strd${spokeFunctionSuffix}'
+var strFunctionName = 'strf${spokeFunctionSuffix}'
 
-resource spokeAseRg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: spokeRgAseName
+resource spokeFunctionRg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+  name: spokeRgFunctionName
   location: location
 }
 
@@ -20,13 +22,18 @@ resource spokeStorageRg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   location: location
 }
 
+resource hubRg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+  name: hubRgName
+  location: location
+}
 
-module vnetSpokeAse './modules/networking/vnet.spoke.ase.bicep' = {
-  scope: resourceGroup(spokeAseRg.name)
+
+module vnetSpokeFunction './modules/networking/vnet.spoke.function.bicep' = {
+  scope: resourceGroup(spokeFunctionRg.name)
   name: 'vnetSpokeAse'
   params: {
     location: location
-    vnetConfiguration: vnetConfiguration.spokeAse
+    vnetConfiguration: vnetConfiguration.spokeFunction
   }
 }
 
@@ -39,12 +46,11 @@ module storageDocument 'modules/storage/storage.bicep' = {
   }
 }
 
-module ase 'modules/ase/ase.bicep' = {
-  scope: resourceGroup(spokeAseRg.name)
-  name: 'ase'
+module storageFunction 'modules/storage/storage.bicep' = {
+  scope: resourceGroup(spokeFunctionRg.name)
+  name: 'storageFunction'
   params: {
     location: location
-    subnetId: vnetSpokeAse.outputs.subnets[0].id
-    suffix: spokeAseSuffix
+    name: strFunctionName
   }
 }
