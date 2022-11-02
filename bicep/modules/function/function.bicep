@@ -77,10 +77,6 @@ resource function 'Microsoft.Web/sites@2020-06-01' = {
           value: 'DefaultEndpointsProtocol=https;AccountName=${storageFunction};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageFunction.id, storageFunction.apiVersion).keys[0].value}'
         }
         {
-          name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING'
-          value: 'DefaultEndpointsProtocol=https;AccountName=${storageFunction};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageFunction.id, storageFunction.apiVersion).keys[0].value}'
-        }
-        {
           name: 'StrDocument'
           value: 'DefaultEndpointsProtocol=https;AccountName=${storageDocument};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageDocument.id, storageDocument.apiVersion).keys[0].value}'
         }
@@ -90,7 +86,7 @@ resource function 'Microsoft.Web/sites@2020-06-01' = {
         }
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
-          value: '~3'
+          value: '~4'
         }
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
